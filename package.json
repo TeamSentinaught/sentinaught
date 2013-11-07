@@ -3,10 +3,10 @@
         "description": "mutation testing framework",
         "keywords": ["mutation","mutation testing","test","testing","XP","TDD"],
         "contributors": [ 
-   	 {
+   	{
      	 "name": "Ben Flowers",
      	 "email": "ben.j.flowers@gmail.com"
-   	 },
+   	},
   	{
   	 "name": "Iain Mitchell",
   	 "email": "iainjmitchell@gmail.com"
