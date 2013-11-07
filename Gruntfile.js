@@ -22,13 +22,20 @@ module.exports = function(grunt) {
 				},
 				src: ['.']
 			}
+		}, 
+		shell: {
+			push_it_real_bad: {
+				command: 'git push'
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-git');
+	grunt.loadNpmTasks('grunt-shell');
+
 
 	grunt.registerTask('test', ['mochaTest','jshint']);
-	grunt.registerTask('default',['test','gitcommit']);
+	grunt.registerTask('default',['test','gitcommit', 'shell:push_it_real_bad']);
 };

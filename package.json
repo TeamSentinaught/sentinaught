@@ -32,7 +32,8 @@
      "grunt-cli": "*",
      "grunt-contrib-jshint": "*",
      "grunt-mocha-test": "*",
-     "grunt-git": "*"
+     "grunt-git": "*",
+     "grunt-shell": "*"
   },
   "scripts":{
   	"test": "./node_modules/grunt-cli/bin/grunt test"
