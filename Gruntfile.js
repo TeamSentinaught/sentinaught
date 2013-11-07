@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 			}
 		}, 
 		shell: {
-			push_it_real_bad: {
+			git_push: {
 				command: 'git push'
 			}
 		}
@@ -35,7 +35,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-git');
 	grunt.loadNpmTasks('grunt-shell');
 
-
 	grunt.registerTask('test', ['mochaTest','jshint']);
-	grunt.registerTask('default',['test','gitcommit', 'shell:push_it_real_bad']);
+	grunt.registerTask('default',['test','gitcommit', 'shell:git_push']);
 };
