@@ -1,41 +1,41 @@
 {
-        "name": "sentinaught",
-        "description": "mutation testing framework",
-        "keywords": ["mutation","mutation testing","test","testing","XP","TDD"],
-        "contributors": [ 
-   	{
-     	 "name": "Ben Flowers",
-     	 "email": "ben.j.flowers@gmail.com"
-   	},
-  	{
-  	 "name": "Iain Mitchell",
-  	 "email": "iainjmitchell@gmail.com"
-  	}
+    "name": "sentinaught",
+    "description": "mutation testing framework",
+    "keywords": ["mutation","mutation testing","test","testing","XP","TDD"],
+    "contributors": [ 
+        {
+            "name": "Ben Flowers",
+            "email": "ben.j.flowers@gmail.com"
+        },
+        {
+            "name": "Iain Mitchell",
+            "email": "iainjmitchell@gmail.com"
+        }
   	],
-        "version": "0.0.1",
-  "repository" : { 
-    "type" : "git", 
-    "url" : "http://github.com/iainjmitchell/sentinaught"
+    "version": "0.0.1",
+    "repository" : { 
+        "type" : "git", 
+        "url" : "http://github.com/iainjmitchell/sentinaught"
     },
-        "licenses": [{
-          "type": "MIT"
-        }],
-        "directories": {
-          "lib": "./lib"
-        },
-        "main":  "./lib/sentinaught.js",
-        "dependencies": {
-        },
-  "devDependencies":{
-     "mocha": "*",
-     "chai" : "*",
-     "grunt-cli": "*",
-     "grunt-contrib-jshint": "*",
-     "grunt-mocha-test": "*",
-     "grunt-git": "*",
-     "grunt-shell": "*"
-  },
-  "scripts":{
-  	"test": "./node_modules/grunt-cli/bin/grunt test"
-  }
+    "licenses": [{
+      "type": "MIT"
+    }],
+    "directories": {
+      "lib": "./lib"
+    },
+    "main": "./lib/sentinaught.js",
+    "dependencies": {
+    },
+    "devDependencies":{
+        "mocha": "*",
+        "chai" : "*",
+        "grunt-cli": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-mocha-test": "*",
+        "grunt-git": "*",
+        "grunt-shell": "*"
+    },
+    "scripts":{
+        "test": "./node_modules/grunt-cli/bin/grunt test"
+    }
 }
