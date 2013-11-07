@@ -7,10 +7,10 @@
      	 "name": "Ben Flowers",
      	 "email": "ben.j.flowers@gmail.com"
    	 },
-	{
-	"name": "Iain Mitchell",
-	"email": "iainjmitchell@gmail.com"
-	}
+  	{
+  	 "name": "Iain Mitchell",
+  	 "email": "iainjmitchell@gmail.com"
+  	}
   	],
         "version": "0.0.1",
   "repository" : { 
@@ -28,6 +28,13 @@
         },
   "devDependencies":{
      "mocha": "*",
-     "chai" : "*"
+     "chai" : "*",
+     "grunt-cli": "*",
+     "grunt-contrib-jshint": "*",
+     "grunt-mocha-test": "*",
+     "grunt-git-deploy": "*"
+  },
+  "scripts":{
+  	"test": "./node_modules/grunt-cli/bin/grunt test"
   }
 }
