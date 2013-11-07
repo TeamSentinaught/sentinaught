@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 				},
 				src: ["test/**/*.js"]
 			}
-		},
+		}/*,
 		git_deploy: {
 			your_targets: {
 				options:{
@@ -23,12 +23,12 @@ module.exports = function(grunt) {
 				},
 				src: './'
 			}
-		}
+		}*/
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-mocha-test');
-	grunt.loadNpmTasks('grunt-git-deploy');
+	grunt.loadNpmTasks('grunt-git');
 
 	grunt.registerTask('test', ['mochaTest','jshint']);
 	grunt.registerTask('default',['test','git_deploy']);
