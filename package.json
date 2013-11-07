@@ -25,6 +25,7 @@
     },
     "main": "./lib/sentinaught.js",
     "dependencies": {
+        "commander": "*"
     },
     "devDependencies":{
         "mocha": "*",
@@ -37,5 +38,9 @@
     },
     "scripts":{
         "test": "./node_modules/grunt-cli/bin/grunt test"
+    },
+    "preferGlobal": true,
+    "bin": {
+        "sentinaught": "bin/sentinaught.js"
     }
 }
