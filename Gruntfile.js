@@ -14,16 +14,15 @@ module.exports = function(grunt) {
 				},
 				src: ["test/**/*.js"]
 			}
-		}/*,
-		git_deploy: {
-			your_targets: {
+		},
+		gitcommit: {
+			your_target: {
 				options:{
-					url: 'git@github.com:iainjmitchell/sentinaught.git',
 					message: message
 				},
-				src: './'
+				src: ['.']
 			}
-		}*/
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -31,5 +30,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-git');
 
 	grunt.registerTask('test', ['mochaTest','jshint']);
-	grunt.registerTask('default',['test','git_deploy']);
+	grunt.registerTask('default',['test','gitcommit']);
 };
