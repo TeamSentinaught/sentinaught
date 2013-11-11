@@ -1,0 +1,102 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'link' ]
+2 info using npm@1.3.13
+3 info using node@v0.11.9-pre
+4 verbose linkPkg /home/ben/workspace/sentinaught
+5 verbose link build target /usr/local/lib/node_modules/sentinaught
+6 verbose install where,what [ '/home/ben/workspace/sentinaught', [] ]
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ '/home/ben/workspace/sentinaught',
+8 verbose install   [ 'commander',
+8 verbose install     'mocha',
+8 verbose install     'chai',
+8 verbose install     'grunt-cli',
+8 verbose install     'grunt-contrib-jshint',
+8 verbose install     'grunt-mocha-test',
+8 verbose install     'grunt-git',
+8 verbose install     'grunt-shell' ] ]
+9 info preinstall sentinaught@0.0.1
+10 verbose readDependencies using package.json deps
+11 verbose already installed skipping commander@* /home/ben/workspace/sentinaught
+12 verbose already installed skipping mocha@* /home/ben/workspace/sentinaught
+13 verbose already installed skipping chai@* /home/ben/workspace/sentinaught
+14 verbose already installed skipping grunt-cli@* /home/ben/workspace/sentinaught
+15 verbose already installed skipping grunt-contrib-jshint@* /home/ben/workspace/sentinaught
+16 verbose already installed skipping grunt-mocha-test@* /home/ben/workspace/sentinaught
+17 verbose already installed skipping grunt-git@* /home/ben/workspace/sentinaught
+18 verbose already installed skipping grunt-shell@* /home/ben/workspace/sentinaught
+19 silly resolved []
+20 info build /home/ben/workspace/sentinaught
+21 verbose linkStuff [ false, false, false, '/home/ben/workspace' ]
+22 info linkStuff sentinaught@0.0.1
+23 verbose linkBins sentinaught@0.0.1
+24 verbose linkMans sentinaught@0.0.1
+25 verbose rebuildBundles sentinaught@0.0.1
+26 verbose rebuildBundles [ '.bin',
+26 verbose rebuildBundles   'chai',
+26 verbose rebuildBundles   'commander',
+26 verbose rebuildBundles   'grunt',
+26 verbose rebuildBundles   'grunt-cli',
+26 verbose rebuildBundles   'grunt-contrib-jshint',
+26 verbose rebuildBundles   'grunt-git',
+26 verbose rebuildBundles   'grunt-mocha-test',
+26 verbose rebuildBundles   'grunt-shell',
+26 verbose rebuildBundles   'mocha' ]
+27 verbose rebuild bundle /home/ben/workspace/sentinaught/node_modules/grunt
+28 info build /home/ben/workspace/sentinaught/node_modules/grunt
+29 info preinstall grunt@0.4.1
+30 verbose linkStuff [ false,
+30 verbose linkStuff   false,
+30 verbose linkStuff   false,
+30 verbose linkStuff   '/home/ben/workspace/sentinaught/node_modules' ]
+31 info linkStuff grunt@0.4.1
+32 verbose linkBins grunt@0.4.1
+33 verbose linkMans grunt@0.4.1
+34 verbose rebuildBundles grunt@0.4.1
+35 verbose rebuildBundles [ '.bin',
+35 verbose rebuildBundles   'async',
+35 verbose rebuildBundles   'coffee-script',
+35 verbose rebuildBundles   'colors',
+35 verbose rebuildBundles   'dateformat',
+35 verbose rebuildBundles   'eventemitter2',
+35 verbose rebuildBundles   'findup-sync',
+35 verbose rebuildBundles   'glob',
+35 verbose rebuildBundles   'hooker',
+35 verbose rebuildBundles   'iconv-lite',
+35 verbose rebuildBundles   'js-yaml',
+35 verbose rebuildBundles   'lodash',
+35 verbose rebuildBundles   'minimatch',
+35 verbose rebuildBundles   'nopt',
+35 verbose rebuildBundles   'rimraf',
+35 verbose rebuildBundles   'underscore.string',
+35 verbose rebuildBundles   'which' ]
+36 info install grunt@0.4.1
+37 info postinstall grunt@0.4.1
+38 info install sentinaught@0.0.1
+39 info postinstall sentinaught@0.0.1
+40 info prepublish sentinaught@0.0.1
+41 info build /usr/local/lib/node_modules/sentinaught
+42 verbose linkStuff [ true,
+42 verbose linkStuff   '/usr/local/lib/node_modules',
+42 verbose linkStuff   true,
+42 verbose linkStuff   '/usr/local/lib/node_modules' ]
+43 info linkStuff sentinaught@0.0.1
+44 verbose linkBins sentinaught@0.0.1
+45 verbose link bins [ { sentinaught: 'node ./bin/sentinaught.js' },
+45 verbose link bins   '/usr/local/bin',
+45 verbose link bins   true ]
+46 verbose linkMans sentinaught@0.0.1
+47 error Error: ENOENT, chmod '/usr/local/lib/node_modules/sentinaught/node ./bin/sentinaught.js'
+48 error If you need help, you may report this log at:
+48 error     <http://github.com/isaacs/npm/issues>
+48 error or email it to:
+48 error     <npm-@googlegroups.com>
+49 error System Linux 3.11.0-12-generic
+50 error command "/usr/local/bin/node" "/usr/local/bin/npm" "link"
+51 error cwd /home/ben/workspace/sentinaught/bin
+52 error node -v v0.11.9-pre
+53 error npm -v 1.3.13
+54 error path /usr/local/lib/node_modules/sentinaught/node ./bin/sentinaught.js
+55 error code ENOENT
+56 error errno -2
+57 verbose exit [ -2, true ]
