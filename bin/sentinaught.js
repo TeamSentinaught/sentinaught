@@ -1,13 +1,16 @@
 #! /usr/bin/env node
 var sentinaught = require('../lib/sentinaught'),
-	sentinaughtOptions = require('commander');
+	sentinaughtOptions = require('commander'),
+	readJson = require('read-package-json');
 
-
-sentinaughtOptions
-	.version('0.0.1')
+readJson('./package.json',function (error,package) {
+	sentinaughtOptions
+	.version(package.version)
 	.parse(process.argv);
 
-sentinaught(sentinaughtOptions);
+	sentinaught(sentinaughtOptions);
+});
+
 
 
 

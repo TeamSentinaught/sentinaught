@@ -25,7 +25,8 @@
     },
     "main": "./lib/sentinaught.js",
     "dependencies": {
-        "commander": "*"
+        "commander": "*",
+        "read-package-json": "*"
     },
     "devDependencies":{
         "mocha": "*",
