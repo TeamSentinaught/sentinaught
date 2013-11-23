@@ -12,7 +12,8 @@ module.exports = function(grunt) {
 			test: {
 				options: {
 					reporter: 'nyan',
-					recursive: true
+					recursive: true,
+					ui: 'tdd'
 				},
 				src: ["test/**/*.js"]
 			}
