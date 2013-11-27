@@ -2,6 +2,7 @@ var MochaTestRunner = require('../../lib/mocha-test-runner');
 require('chai').should();
 
 test('Mocha test run passes when standard ui run against all-okay-standard-ui', function(done){
+	console.log('---------------------------------------');
 	var	mockTestMonitor = {
 			passed : done,
 		},
@@ -13,6 +14,7 @@ test('Mocha test run passes when standard ui run against all-okay-standard-ui', 
 });
 
 test('Mocha test run fails when standard ui run against all-bad-standard-ui', function(done){
+	console.log('---------------------------------------');
 	var	mockTestMonitor = {
 			passed : function(){
 				done('Expected test runner failure');
