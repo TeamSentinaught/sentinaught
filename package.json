@@ -26,7 +26,9 @@
     "main": "./lib/sentinaught.js",
     "dependencies": {
         "commander": "*",
-        "read-package-json": "*"
+        "read-package-json": "*",
+        "flavored-path": "*",
+        "underscore" : "*"
     },
     "devDependencies":{
         "mocha": "*",
@@ -35,7 +37,8 @@
         "grunt-contrib-jshint": "*",
         "grunt-mocha-test": "*",
         "grunt-git": "*",
-        "grunt-shell": "*"
+        "grunt-shell": "*",
+        "rewire": "*"
     },
     "scripts":{
         "test": "./node_modules/grunt-cli/bin/grunt test"
