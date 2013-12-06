@@ -17,6 +17,12 @@ test("When Given a path with multiple files, Then an array of files is returned 
 		}
 	});
 
+	FileRepository.__set__("DirectorySpecification",{
+		isSatisfiedBy: function(){ 
+			return false;
+		}
+	});
+
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get();
 	files.should.deep.equal(expectedFiles);
@@ -32,5 +38,44 @@ test("When given a path, Then the files are returned from the correctly formatte
 		}
 	});
 
+	FileRepository.__set__("DirectorySpecification",{
+		isSatisfiedBy: function(){ 
+			return false;
+		}
+	});
+
 	new FileRepository(fileLocation).get();
+});
+
+test("When given a path and query is recursive, Then all files from subfolders are returned",function(){
+	var rootPath = path.normalize("c:\\workspace\\myproject"),
+		fileName = "rootTest.js",
+		folderName = "some_tests",
+		subfolderFileName = "other_tests.js",
+		subFolderFullPath = path.join(rootPath,folderName),
+		rootFileNameFullPath = path.join(rootPath,fileName),
+		subfolderFileNameFullPath = path.join(path.join(rootPath,folderName),subfolderFileName),
+		expectedFiles = [rootFileNameFullPath,subfolderFileNameFullPath];
+
+	FileRepository.__set__("fs",{
+		readdirSync : function(path){
+			if(path === rootPath){
+				return [fileName,folderName];	
+			}
+			return [subfolderFileName];			
+		}
+	});
+
+	FileRepository.__set__("DirectorySpecification",{
+		isSatisfiedBy: function(path){ 
+			if(path === subFolderFullPath){
+				return true;
+			}
+			return false;
+		}
+	});
+
+	fileRepository = new FileRepository(rootPath);
+	files = fileRepository.get();
+	files.should.deep.equal(expectedFiles);
 });
