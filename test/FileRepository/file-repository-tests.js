@@ -11,17 +11,8 @@ test("When Given a path with multiple files, Then an array of files is returned 
 		fileName2fullFilePath = path.join(fileLocation,fileName2),
 		expectedFiles = [fileNamefullFilePath,fileName2fullFilePath];
 
-	FileRepository.__set__("fs",{
-		readdirSync : function(path){
-			return [fileName,fileName2];
-		}
-	});
-
-	FileRepository.__set__("DirectorySpecification",{
-		isSatisfiedBy: function(){ 
-			return false;
-		}
-	});
+	FileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
+	FileRepository.__set__("DirectorySpecification", new FakeDirectoriesSpecification());
 
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get();
@@ -31,19 +22,14 @@ test("When Given a path with multiple files, Then an array of files is returned 
 test("When given a path, Then the files are returned from the correctly formatted path in the system",function(done){
 	var fileLocation = "~/workspace/myProject",
 		formattedFileLocation = path.normalize(fileLocation);
+
+	FileRepository.__set__("DirectorySpecification",new FakeDirectoriesSpecification());
 	FileRepository.__set__("fs",{
 		readdirSync : function(path){
 			path.should.equal(formattedFileLocation);
 			done();
 		}
 	});
-
-	FileRepository.__set__("DirectorySpecification",{
-		isSatisfiedBy: function(){ 
-			return false;
-		}
-	});
-
 	new FileRepository(fileLocation).get();
 });
 
@@ -66,16 +52,26 @@ test("When given a path and query is recursive, Then all files from subfolders a
 		}
 	});
 
-	FileRepository.__set__("DirectorySpecification",{
-		isSatisfiedBy: function(path){ 
-			if(path === subFolderFullPath){
-				return true;
-			}
-			return false;
-		}
-	});
+	FileRepository.__set__("DirectorySpecification",new FakeDirectoriesSpecification(subFolderFullPath));
 
 	fileRepository = new FileRepository(rootPath);
-	files = fileRepository.get();
+	files = fileRepository.get({"recursive": true});
 	files.should.deep.equal(expectedFiles);
 });
+
+
+var FakeFs = function(files){
+	function readdirSync(){
+		return files;
+	}
+
+	return {
+		readdirSync: readdirSync
+	};
+};
+
+var FakeDirectoriesSpecification = function(directory){
+	this.isSatisfiedBy = function(path){
+		return path === directory;
+	}
+}
