@@ -12,7 +12,7 @@ test("When Given a path with multiple files, Then an array of files is returned 
 		expectedFiles = [fileNamefullFilePath,fileName2fullFilePath];
 
 	FileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
-	FileRepository.__set__("DirectorySpecification", new FakeDirectoriesSpecification());
+	FileRepository.__set__("FileSpecification", new FakeFileSpecification());
 
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get();
@@ -23,7 +23,7 @@ test("When given a path, Then the files are returned from the correctly formatte
 	var fileLocation = "~/workspace/myProject",
 		formattedFileLocation = path.normalize(fileLocation);
 
-	FileRepository.__set__("DirectorySpecification",new FakeDirectoriesSpecification());
+	FileRepository.__set__("FileSpecification",new FakeFileSpecification());
 	FileRepository.__set__("fs",{
 		readdirSync : function(path){
 			path.should.equal(formattedFileLocation);
@@ -52,10 +52,36 @@ test("When given a path and query is recursive, Then all files from subfolders a
 		}
 	});
 
-	FileRepository.__set__("DirectorySpecification",new FakeDirectoriesSpecification(subFolderFullPath));
+	FileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
 
 	fileRepository = new FileRepository(rootPath);
 	files = fileRepository.get({recursive: true});
+	files.should.deep.equal(expectedFiles);
+});
+
+test("When given a path and query is non recursive, Then all files from subfolders are not returned",function(){
+	var rootPath = path.normalize("c:\\workspace\\myproject"),
+		fileName = "rootTest.js",
+		folderName = "some_tests",
+		subfolderFileName = "other_tests.js",
+		subFolderFullPath = path.join(rootPath,folderName),
+		rootFileNameFullPath = path.join(rootPath,fileName),
+		subfolderFileNameFullPath = path.join(path.join(rootPath,folderName),subfolderFileName),
+		expectedFiles = [rootFileNameFullPath];
+
+	FileRepository.__set__("fs",{
+		readdirSync : function(path){
+			if(path === rootPath){
+				return [fileName,folderName];	
+			}
+			return [subfolderFileName];			
+		}
+	});
+
+	FileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
+
+	fileRepository = new FileRepository(rootPath);
+	files = fileRepository.get({recursive: false});
 	files.should.deep.equal(expectedFiles);
 });
 
@@ -70,8 +96,8 @@ var FakeFs = function(files){
 	};
 };
 
-var FakeDirectoriesSpecification = function(directory){
+var FakeFileSpecification = function(directory){
 	this.isSatisfiedBy = function(path){
-		return path === directory;
+		return path !== directory;
 	}
 }
