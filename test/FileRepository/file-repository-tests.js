@@ -3,18 +3,22 @@ var rewire = require('rewire'),
 	path = require('flavored-path');
 require('chai').should();
 
-
-test("When Given a path with one file, Then a single file is returned with a full path",function(){
+test("When Given a path with multiple files, Then an array of files is returned with a full path",function(){
 	var fileLocation = "C:\\workspace\\myProject",
 		fileName = "test.js",
-		fullFilePath = path.join(fileLocation,fileName);
+		fileName2 = "test2.js",
+		fileNamefullFilePath = path.join(fileLocation,fileName),
+		fileName2fullFilePath = path.join(fileLocation,fileName2),
+		expectedFiles = [fileNamefullFilePath,fileName2fullFilePath];
 
 	FileRepository.__set__("fs",{
 		readdirSync : function(path){
-			return [fileName];
+			return [fileName,fileName2];
 		}
 	});
+
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get();
-	files[0].should.equal(fullFilePath);
+	files.should.deep.equal(expectedFiles);
 });
+
