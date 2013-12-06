@@ -1,5 +1,6 @@
 var rewire = require('rewire'),
 	FileRepository = rewire('../../lib/FileRepository'),
+	DirectoryFileRepository = rewire('../../lib/DirectoryFileRepository'),
 	path = require('flavored-path');
 require('chai').should();
 
@@ -11,8 +12,10 @@ test("When Given a path with multiple files, Then an array of files is returned 
 		fileName2fullFilePath = path.join(fileLocation,fileName2),
 		expectedFiles = [fileNamefullFilePath,fileName2fullFilePath];
 
-	FileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
-	FileRepository.__set__("FileSpecification", new FakeFileSpecification());
+	
+	DirectoryFileRepository.__set__("FileSpecification", new FakeFileSpecification());
+	DirectoryFileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
+	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get();
@@ -23,13 +26,13 @@ test("When given a path, Then the files are returned from the correctly formatte
 	var fileLocation = "~/workspace/myProject",
 		formattedFileLocation = path.normalize(fileLocation);
 
-	FileRepository.__set__("FileSpecification",new FakeFileSpecification());
-	FileRepository.__set__("fs",{
+	DirectoryFileRepository.__set__("fs",{
 		readdirSync : function(path){
 			path.should.equal(formattedFileLocation);
 			done();
 		}
 	});
+	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 	new FileRepository(fileLocation).get();
 });
 
@@ -43,7 +46,8 @@ test("When given a path and query is recursive, Then all files from subfolders a
 		subfolderFileNameFullPath = path.join(path.join(rootPath,folderName),subfolderFileName),
 		expectedFiles = [rootFileNameFullPath,subfolderFileNameFullPath];
 
-	FileRepository.__set__("fs",{
+	DirectoryFileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
+	DirectoryFileRepository.__set__("fs",{
 		readdirSync : function(path){
 			if(path === rootPath){
 				return [fileName,folderName];	
@@ -51,8 +55,8 @@ test("When given a path and query is recursive, Then all files from subfolders a
 			return [subfolderFileName];			
 		}
 	});
-
-	FileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
+	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
+	
 
 	fileRepository = new FileRepository(rootPath);
 	files = fileRepository.get({recursive: true});
@@ -69,7 +73,7 @@ test("When given a path and query is non recursive, Then all files from subfolde
 		subfolderFileNameFullPath = path.join(path.join(rootPath,folderName),subfolderFileName),
 		expectedFiles = [rootFileNameFullPath];
 
-	FileRepository.__set__("fs",{
+	DirectoryFileRepository.__set__("fs",{
 		readdirSync : function(path){
 			if(path === rootPath){
 				return [fileName,folderName];	
@@ -77,8 +81,8 @@ test("When given a path and query is non recursive, Then all files from subfolde
 			return [subfolderFileName];			
 		}
 	});
-
-	FileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
+	DirectoryFileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
+	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 	fileRepository = new FileRepository(rootPath);
 	files = fileRepository.get({recursive: false});
 	files.should.deep.equal(expectedFiles);
@@ -91,8 +95,9 @@ test("When Given a path with multiple file types and a query for only js files, 
 		fileNamefullFilePath = path.join(fileLocation,fileName),
 		expectedFiles = [fileNamefullFilePath];
 
-	FileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
-	FileRepository.__set__("FileSpecification", new FakeFileSpecification());
+	DirectoryFileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
+	DirectoryFileRepository.__set__("FileSpecification", new FakeFileSpecification());
+	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 
 	fileRepository = new FileRepository(fileLocation);
 	files = fileRepository.get({name: "*.js"});
