@@ -99,5 +99,5 @@ var FakeFs = function(files){
 var FakeFileSpecification = function(directory){
 	this.isSatisfiedBy = function(path){
 		return path !== directory;
-	}
-}
+	};
+};
