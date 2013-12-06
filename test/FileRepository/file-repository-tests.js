@@ -22,3 +22,15 @@ test("When Given a path with multiple files, Then an array of files is returned 
 	files.should.deep.equal(expectedFiles);
 });
 
+test("When given a path, Then the files are returned from the correctly formatted path in the system",function(done){
+	var fileLocation = "~/workspace/myProject",
+		formattedFileLocation = path.normalize(fileLocation);
+	FileRepository.__set__("fs",{
+		readdirSync : function(path){
+			path.should.equal(formattedFileLocation);
+			done();
+		}
+	});
+
+	new FileRepository(fileLocation).get();
+});
