@@ -55,7 +55,7 @@ test("When given a path and query is recursive, Then all files from subfolders a
 	FileRepository.__set__("DirectorySpecification",new FakeDirectoriesSpecification(subFolderFullPath));
 
 	fileRepository = new FileRepository(rootPath);
-	files = fileRepository.get({"recursive": true});
+	files = fileRepository.get({recursive: true});
 	files.should.deep.equal(expectedFiles);
 });
 
