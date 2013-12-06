@@ -28,7 +28,8 @@
         "commander": "*",
         "read-package-json": "*",
         "flavored-path": "*",
-        "underscore" : "*"
+        "underscore" : "*",
+        "anymatch" : "*"
     },
     "devDependencies":{
         "mocha": "*",

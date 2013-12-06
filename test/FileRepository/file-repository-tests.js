@@ -79,9 +79,23 @@ test("When given a path and query is non recursive, Then all files from subfolde
 	});
 
 	FileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
-
 	fileRepository = new FileRepository(rootPath);
 	files = fileRepository.get({recursive: false});
+	files.should.deep.equal(expectedFiles);
+});
+
+test("When Given a path with multiple file types and a query for only js files, Then an array of files is returned with a full path for only js files",function(){
+	var fileLocation = "C:\\workspace\\myProject",
+		fileName = "test.js",
+		fileName2 = "data.json",
+		fileNamefullFilePath = path.join(fileLocation,fileName),
+		expectedFiles = [fileNamefullFilePath];
+
+	FileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
+	FileRepository.__set__("FileSpecification", new FakeFileSpecification());
+
+	fileRepository = new FileRepository(fileLocation);
+	files = fileRepository.get({name: "*.js"});
 	files.should.deep.equal(expectedFiles);
 });
 
