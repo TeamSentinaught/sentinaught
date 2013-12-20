@@ -18,8 +18,26 @@ test("When running sentinaught with test options, Then Mocha Test runner runs th
 	});
 
 	sentinaught.__set__('MochaTestRunner',function(testOptions){
+		this.start = function(){};
 		testOptions.tests.should.deep.equal(testFiles);
 		done();
+	});
+
+	sentinaught({tests:testFilesFolder});
+});
+
+test("When running sentinaught with test options, Then Mocha Test runner should start",function(done){
+	var testFilesFolder = "./tests";
+	sentinaught.__set__('FileRepository',function(fileLocation){
+		this.get = function(){
+			return [];
+		};
+	});
+
+	sentinaught.__set__('MochaTestRunner',function(testOptions){
+		this.start = function(){
+			done();
+		};
 	});
 
 	sentinaught({tests:testFilesFolder});
@@ -32,7 +50,9 @@ test("When running sentinaught with test options, Then file repository should ha
 			done();
 		};
 	});
-	sentinaught.__set__('MochaTestRunner',function(){});
+	sentinaught.__set__('MochaTestRunner',function(){
+		this.start = function(){};
+	});
 
 	sentinaught({tests:'./', recursive:true});
 });
@@ -44,7 +64,9 @@ test("When running sentinaught with test options, Then file repository should on
 			done();
 		};
 	});
-	sentinaught.__set__('MochaTestRunner',function(){});
+	sentinaught.__set__('MochaTestRunner',function(){
+		this.start = function(){};
+	});
 
 	sentinaught({tests:'./', recursive:true});
 });
