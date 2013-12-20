@@ -37,6 +37,18 @@ test("When running sentinaught with test options, Then file repository should ha
 	sentinaught({tests:'./', recursive:true});
 });
 
+test("When running sentinaught with test options, Then file repository should only pick up js files",function(done){
+	sentinaught.__set__('FileRepository',function(fileLocation){
+		this.get = function(options){
+			options.name.should.be.equal('*.js');
+			done();
+		};
+	});
+	sentinaught.__set__('MochaTestRunner',function(){});
+
+	sentinaught({tests:'./', recursive:true});
+});
+
 
 test("when running sentinaught without any test options, Then no test options exception thrown",function(){
 	assert.throws(function(){
