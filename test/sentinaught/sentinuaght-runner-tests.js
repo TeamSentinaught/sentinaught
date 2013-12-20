@@ -1,3 +1,4 @@
+/*jshint expr: true */
 var rewire = require('rewire'),
 	sentinaught = rewire('../../lib/sentinaught'),
 	assert = require('assert');
@@ -22,6 +23,18 @@ test("When running sentinaught with test options, Then Mocha Test runner runs th
 	});
 
 	sentinaught({tests:testFilesFolder});
+});
+
+test("When running sentinaught with test options, Then file repository should have recursive option set",function(done){
+	sentinaught.__set__('FileRepository',function(fileLocation){
+		this.get = function(options){
+			options.recursive.should.be.true;
+			done();
+		};
+	});
+	sentinaught.__set__('MochaTestRunner',function(){});
+
+	sentinaught({tests:'./', recursive:true});
 });
 
 
