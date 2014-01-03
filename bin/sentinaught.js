@@ -5,13 +5,9 @@ var sentinaught = require('../lib/sentinaught'),
 
  readJson('./package.json',function (error,package) {
 	sentinaughtOptions
-	.option('-T, --tests <location>','test folder location')
-	.option('-r, --recursive','Recurse test folder')
-	.version(package.version)
-	.parse(process.argv);
+		.option('-T, --tests <location>','test folder location')
+		.option('-r, --recursive','Recurse test folder')
+		.version(package.version)
+		.parse(process.argv);
 	sentinaught(sentinaughtOptions);
  });
-
-
-
-
