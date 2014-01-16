@@ -39,7 +39,12 @@
         "grunt-mocha-test": "*",
         "grunt-git": "*",
         "grunt-shell": "*",
-        "rewire": "*"
+        "rewire": "*",
+        "gulp" : "*",
+        "gulp-mocha" : "*",
+        "gulp-jshint" : "*",
+        "jshint-stylish" : "*",
+        "gulp-git" : "*"
     },
     "scripts":{
         "test": "./node_modules/grunt-cli/bin/grunt test"
