@@ -30,5 +30,6 @@ gulp.task('push', function(){
 	gulp
 		.src('./.')
 		.pipe(git.add())
-		.pipe(git.commit(commitMessage));
+		.pipe(git.commit(commitMessage))
+		.pipe(git.push());
 });
