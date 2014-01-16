@@ -33,3 +33,7 @@ gulp.task('push', function(){
 		.pipe(git.commit(commitMessage))
 		.pipe(git.push());
 });
+
+gulp.task('default', function(){
+	gulp.run('test', 'push');
+});
