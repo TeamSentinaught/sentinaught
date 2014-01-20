@@ -15,17 +15,10 @@ gulp.task('mocha', function () {
 });
 
 gulp.task('jshint', function(){
-	var eventStream = require('event-stream');
-	var failed = false;
-	var failWatcher = eventStream.map(function (file, cb) {
-		if (!file.jshint.success) return cb(new Error("JSHint failed"), file);
-		cb(null, file);
-	});
 	gulp
 		.src(['lib/**/*.js', 'test/**/*.js'])
 		.pipe(jshint())
-		.pipe(jshint.reporter('jshint-stylish'))
-		.pipe(failWatcher);
+		.pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('test', ['jshint', 'mocha']);
