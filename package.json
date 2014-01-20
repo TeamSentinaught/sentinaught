@@ -44,7 +44,8 @@
         "gulp-mocha" : "*",
         "gulp-jshint" : "*",
         "jshint-stylish" : "*",
-        "gulp-git" : "*"
+        "gulp-git" : "*",
+        "event-stream" : "*"
     },
     "scripts":{
         "test": "./node_modules/grunt-cli/bin/grunt test"
