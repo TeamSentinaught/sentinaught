@@ -4,10 +4,10 @@ var gulp = require('gulp'),
 	git = require('gulp-git');
 
 gulp.task('mocha', function () {
-    var mochaRun = mocha({
+	var mochaRun = mocha({
 			reporter: 'nyan',
-        	ui: 'tdd'
-    	});
+			ui: 'tdd'
+		});
 
 	return gulp
 		.src('test/**/*.js')
