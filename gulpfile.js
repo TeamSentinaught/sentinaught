@@ -23,7 +23,7 @@ gulp.task('jshint', function(){
 
 gulp.task('test', ['jshint', 'mocha']);
 
-gulp.task('push', ['jshint'], function(){
+gulp.task('push', ['test'], function(){
 	var commitMessage = gulp.env.message || 'no commit message';
 	console.log('Tests passed! Pushing code...');
 	return gulp
