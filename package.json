@@ -34,11 +34,6 @@
     "devDependencies":{
         "mocha": "*",
         "chai" : "*",
-        "grunt-cli": "*",
-        "grunt-contrib-jshint": "*",
-        "grunt-mocha-test": "*",
-        "grunt-git": "*",
-        "grunt-shell": "*",
         "rewire": "*",
         "gulp" : "*",
         "gulp-mocha" : "*",
