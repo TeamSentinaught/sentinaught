@@ -14,6 +14,17 @@ gulp.task('mocha', function () {
 		.pipe(mochaRun);
 });
 
+gulp.task('integration', function () {
+	var mochaRun = mocha({
+			reporter: 'nyan',
+			ui: 'bdd'
+		});
+
+	return gulp
+		.src('integration-tests/**/*.js')
+		.pipe(mochaRun);
+});
+
 gulp.task('jshint', function(){
 	return gulp
 		.src(['lib/**/*.js', 'test/**/*.js'])
