@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-var sentinaught = require('../lib/sentinaught'),
+var Sentinaught = require('../lib/sentinaught'),
 	sentinaughtOptions = require('commander'),
 	readJson = require('read-package-json');
 
@@ -9,5 +9,13 @@ var sentinaught = require('../lib/sentinaught'),
 		.option('-r, --recursive','Recurse test folder')
 		.version(package.version)
 		.parse(process.argv);
-	sentinaught(sentinaughtOptions);
+	
+	new Sentinaught({
+		passed : function(){
+			console.log('passed :)');
+		},
+		failed : function(){
+			console.log('failed :(');
+		}
+	}).run(sentinaughtOptions);
  });

@@ -32,7 +32,7 @@ gulp.task('jshint', function(){
 		.pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('test', ['jshint', 'mocha']);
+gulp.task('test', ['jshint', 'mocha', 'integration']);
 
 gulp.task('push', ['test'], function(){
 	var commitMessage = gulp.env.message || 'refactoring Yo!';
