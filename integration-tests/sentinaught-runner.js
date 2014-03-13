@@ -21,8 +21,19 @@ describe('Given that the tests cover the code adequately', function(){
 
 describe('Given that the tests do NOT cover the code adequately', function(){
 	describe('When I run sentinaught', function(){
-		it('Then I get notified that the code is NOT fully tested', function(){
-			true.should.equal(true);
+		it('Then I get notified that the code is NOT fully tested', function(done){
+			var mockTestMonitor = {
+					passed : function(){
+						done('Should have failed');
+					},
+					failed : function(){
+						done();
+					}
+				};
+			new Sentinaught(mockTestMonitor).run({
+				tests : './integration-tests/fails/tests',
+				src : './integration-tests/fails/src'
+			});
 		});
 	});
 });
