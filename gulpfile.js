@@ -21,7 +21,7 @@ gulp.task('integration', function () {
 		});
 
 	return gulp
-		.src('integration-tests/**/*.js')
+		.src('integration-tests/sentinaught-runner.js')
 		.pipe(mochaRun);
 });
 
