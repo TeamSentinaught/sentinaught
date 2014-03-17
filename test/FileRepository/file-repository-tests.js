@@ -17,8 +17,8 @@ test("When Given a path with multiple files, Then an array of files is returned 
 	DirectoryFileRepository.__set__("fs",new FakeFs([fileName,fileName2]));
 	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 
-	fileRepository = new FileRepository(fileLocation);
-	files = fileRepository.get();
+	fileRepository = new FileRepository();
+	files = fileRepository.get(fileLocation);
 	files.should.deep.equal(expectedFiles);
 });
 
@@ -33,7 +33,7 @@ test("When given a path, Then the files are returned from the correctly formatte
 		}
 	});
 	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
-	new FileRepository(fileLocation).get();
+	new FileRepository().get(fileLocation);
 });
 
 test("When given a path and query is recursive, Then all files from subfolders are returned",function(){
@@ -58,8 +58,8 @@ test("When given a path and query is recursive, Then all files from subfolders a
 	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 	
 
-	fileRepository = new FileRepository(rootPath);
-	files = fileRepository.get({recursive: true});
+	fileRepository = new FileRepository({recursive: true});
+	files = fileRepository.get(rootPath);
 	files.should.deep.equal(expectedFiles);
 });
 
@@ -83,8 +83,8 @@ test("When given a path and query is non recursive, Then all files from subfolde
 	});
 	DirectoryFileRepository.__set__("FileSpecification",new FakeFileSpecification(subFolderFullPath));
 	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
-	fileRepository = new FileRepository(rootPath);
-	files = fileRepository.get({recursive: false});
+	fileRepository = new FileRepository({recursive: false});
+	files = fileRepository.get(rootPath);
 	files.should.deep.equal(expectedFiles);
 });
 
@@ -99,8 +99,8 @@ test("When Given a path with multiple file types and a query for only js files, 
 	DirectoryFileRepository.__set__("FileSpecification", new FakeFileSpecification());
 	FileRepository.__set__("DirectoryFileRepository",DirectoryFileRepository);
 
-	fileRepository = new FileRepository(fileLocation);
-	files = fileRepository.get({name: "*.js"});
+	fileRepository = new FileRepository({name: "*.js"});
+	files = fileRepository.get(fileLocation);
 	files.should.deep.equal(expectedFiles);
 });
 
