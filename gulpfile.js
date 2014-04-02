@@ -35,7 +35,7 @@ gulp.task('jshint', function(){
 gulp.task('test', ['jshint', 'mocha', 'integration']);
 
 gulp.task('push', ['test'], function(){
-	var commitMessage = gulp.env.message || 'refactoring Yo!';
+	var commitMessage = gulp.env.m || 'refactoring Yo!';
 	console.log('Tests passed! Pushing code...');
 	return gulp
 		.src('./.')
